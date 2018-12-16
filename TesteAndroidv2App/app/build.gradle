@@ -17,7 +17,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField("String","BASE_URL", "\"https://bank-app-test.herokuapp.com/api/\"")
+        }
         release {
+            buildConfigField("String","BASE_URL", "\"https://bank-app-test.herokuapp.com/api/\"")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
