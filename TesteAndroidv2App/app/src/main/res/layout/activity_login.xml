@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".core.login.LoginActivity">
     <data>
         <variable name="viewModel"
@@ -22,8 +22,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user"
+                style="@style/TextInputLayoutOutlinedBoxBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/user"
                 android:layout_marginTop="100dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -37,8 +39,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password"
+                style="@style/TextInputLayoutOutlinedBoxBase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/blue"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
@@ -46,12 +52,16 @@
 
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button android:layout_width="202dp"
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="202dp"
                 android:layout_height="62dp"
+                android:text="@string/login"
+                android:textAllCaps="false"
                 android:background="@color/blue"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
