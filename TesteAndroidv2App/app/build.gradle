@@ -17,10 +17,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     buildTypes {
         debug {
             buildConfigField("String","BASE_URL", "\"https://bank-app-test.herokuapp.com/api/\"")

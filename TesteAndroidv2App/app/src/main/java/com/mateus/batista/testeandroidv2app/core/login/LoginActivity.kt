@@ -11,13 +11,11 @@ import com.mateus.batista.testeandroidv2app.utils.viewModel
 class LoginActivity : BaseActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
-    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginViewModel = viewModel(viewModelFactory)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        binding.viewModel = loginViewModel
-        binding.executePendingBindings()
+        setContentView(R.layout.activity_login)
+
     }
 }
