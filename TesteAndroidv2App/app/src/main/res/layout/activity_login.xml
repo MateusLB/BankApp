@@ -17,7 +17,7 @@
             android:layout_marginTop="30dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/user"
+            android:id="@+id/userInputLayout"
             style="@style/TextInputLayoutOutlinedBoxBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,13 +28,14 @@
             android:layout_below="@+id/logo">
 
         <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password"
+            android:id="@+id/passwordInputLayout"
             style="@style/TextInputLayoutOutlinedBoxBase"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,9 +45,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_below="@+id/user">
+            android:layout_below="@+id/userInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"/>
@@ -54,6 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
             android:layout_width="202dp"
             android:layout_height="62dp"
             android:text="@string/login"

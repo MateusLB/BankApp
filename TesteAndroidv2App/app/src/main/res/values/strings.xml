@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">TesteAndroidv2 App</string>
+
+    //login
     <string name="user">User</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="required_field_error">Campo obrigatório</string>
+    <string name="invalid_format_user_error">CPF ou Email inválido</string>
+    <string name="invalid_format_password_error">No mínimo uma letra maiúscula, um carácter especial e um caracter alfanumérico</string>
 </resources>
