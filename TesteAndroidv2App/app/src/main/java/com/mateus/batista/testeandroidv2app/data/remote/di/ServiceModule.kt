@@ -1,6 +1,6 @@
 package com.mateus.batista.testeandroidv2app.data.remote.di
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mateus.batista.testeandroidv2app.BuildConfig.BASE_URL
 import com.mateus.batista.testeandroidv2app.data.remote.BankService
 import com.mateus.batista.testeandroidv2app.data.remote.RequestInterceptor

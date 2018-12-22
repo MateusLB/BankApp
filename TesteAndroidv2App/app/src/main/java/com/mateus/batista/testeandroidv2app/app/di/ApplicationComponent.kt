@@ -14,7 +14,8 @@ import javax.inject.Singleton
         ApplicationModule::class,
         PreferencesManagerModule::class,
         ServiceModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        DomainModule::class
     ]
 )
 interface ApplicationComponent {

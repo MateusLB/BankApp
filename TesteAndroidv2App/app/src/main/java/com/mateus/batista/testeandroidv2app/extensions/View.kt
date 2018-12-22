@@ -1,4 +1,4 @@
-package com.mateus.batista.testeandroidv2app.utils
+package com.mateus.batista.testeandroidv2app.extensions
 
 import android.text.Editable
 import android.text.TextWatcher
