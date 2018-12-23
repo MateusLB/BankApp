@@ -8,9 +8,9 @@ import com.mateus.batista.testeandroidv2app.base.view.BaseActivity
 import com.mateus.batista.testeandroidv2app.core.bankPostings.BankPostingsActivity
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.utils.FieldStatus
 import com.mateus.batista.testeandroidv2app.extensions.beforeTextChanged
 import com.mateus.batista.testeandroidv2app.extensions.viewModel
+import com.mateus.batista.testeandroidv2app.utils.FieldStatus
 import com.mateus.batista.testeandroidv2app.utils.FlowState
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.partial_progress_bar.*
@@ -76,7 +76,7 @@ class LoginActivity : BaseActivity() {
             FlowState.Status.ERROR -> {
                 progressBar.visibility = View.GONE
                 loginButton.isEnabled = true
-
+                state.error?.let { handleErrors(it) }
             }
         }
     }

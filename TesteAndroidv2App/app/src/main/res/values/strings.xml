@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">TesteAndroidv2 App</string>
+    <string name="ok">Ok</string>
+    <string name="error_title">Error</string>
+    <string name="no_internet_connection">Sem conexão de Internet</string>
+    <string name="undefined_error">Ocorreu um erro inesperado</string>
+    <string name="server_error">Ocorreu um erro em nosso servidor, tente novamente mais tarde.</string>
 
     //login
     <string name="user">User</string>

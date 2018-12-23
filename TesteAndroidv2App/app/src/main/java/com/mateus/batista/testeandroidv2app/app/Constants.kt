@@ -20,4 +20,10 @@ class Constants {
             const val DATABASE_NAME = "database-bank"
         }
     }
+
+    class Service{
+        companion object {
+            const val SERVER_ERROR = 500
+        }
+    }
 }
