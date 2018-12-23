@@ -1,26 +1,31 @@
 package com.mateus.batista.testeandroidv2app.core.login
 
-import com.mateus.batista.testeandroidv2app.data.local.PreferencesManager
-import com.mateus.batista.testeandroidv2app.data.remote.BankService
+import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
+import com.mateus.batista.testeandroidv2app.data.local.repository.LocalRepository
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.extensions.safeApiCall
-import com.mateus.batista.testeandroidv2app.utils.Response
+import com.mateus.batista.testeandroidv2app.data.remote.Response
+import com.mateus.batista.testeandroidv2app.data.remote.repository.RemoteRepository
 import javax.inject.Inject
 
-class LoginInteractorImpl @Inject constructor(private val bankService: BankService,
-                                              private val preferences : PreferencesManager) : LoginInteractor {
+class LoginInteractorImpl @Inject constructor(
+    private val localRepository: LocalRepository,
+    private val remoteRepository: RemoteRepository
+) : LoginInteractor {
+
     override fun getRecentLogin(): LoginBody? {
-      return preferences.getObject("", LoginBody::class.java)
+        return localRepository.getRecentLogin()
     }
 
     override fun setRecentLogin(loginBody: LoginBody) {
-        preferences.saveObject("",loginBody)
+        localRepository.setRecentLogin(loginBody)
     }
 
-
     override suspend fun signIn(loginBody: LoginBody): Response<LoginResponse> {
-        return safeApiCall({ true },
-            { bankService.postLogin(loginBody).await() })
+        return remoteRepository.signIn(loginBody)
+    }
+
+    override fun saveUserAccount(userAccount: UserAccountEntity) {
+        localRepository.saveUserAccount(userAccount)
     }
 }

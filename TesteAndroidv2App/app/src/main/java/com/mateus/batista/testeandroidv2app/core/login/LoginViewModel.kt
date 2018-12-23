@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.mateus.batista.testeandroidv2app.app.Constants.UtilConstants.Companion.PASSWORD_REGEX
 import com.mateus.batista.testeandroidv2app.base.viewModel.BaseViewModel
+import com.mateus.batista.testeandroidv2app.data.mapper.UserAccountMapper
+import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
 import com.mateus.batista.testeandroidv2app.utils.*
@@ -28,7 +30,7 @@ class LoginViewModel @Inject constructor(
     fun getSignInStatus(): LiveData<FlowState<LoginResponse>> = signInStatus
     fun getRecentLoginData(): LiveData<LoginBody> = recentLoginData
 
-    fun getRecentLogin(){
+    fun getRecentLogin() {
         recentLoginData.value = loginInteractor.getRecentLogin()
     }
 
@@ -39,15 +41,15 @@ class LoginViewModel @Inject constructor(
             job = GlobalScope.launch(provider.iO) {
                 var response = loginInteractor.signIn(LoginBody(user, password))
 
-                withContext(provider.main){
-                    when(response){
+                withContext(provider.main) {
+                    when (response) {
                         is Response.Success -> {
-                            saveRecentLogin(user,password)
+                            saveRecentLogin(user, password)
                             saveUserDetail(response.data)
                             signInStatus.value = FlowState(FlowState.Status.SUCCESS)
                         }
                         is Response.Error -> {
-                            signInStatus.value = FlowState(FlowState.Status.ERROR, error =  response.exception)
+                            signInStatus.value = FlowState(FlowState.Status.ERROR, error = response.exception)
                         }
                     }
                 }
@@ -56,7 +58,9 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun saveUserDetail(loginResponse: LoginResponse) {
-
+        loginResponse.userAccount?.let { userAccount ->
+            loginInteractor.saveUserAccount(UserAccountMapper.parse(userAccount))
+        }
     }
 
     fun isUserValid(user: String): Boolean = when {
@@ -95,6 +99,6 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun saveRecentLogin(user: String, password: String) {
-        loginInteractor.setRecentLogin(LoginBody(user,password))
+        loginInteractor.setRecentLogin(LoginBody(user, password))
     }
 }

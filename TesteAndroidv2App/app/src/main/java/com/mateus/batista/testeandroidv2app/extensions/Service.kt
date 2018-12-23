@@ -1,6 +1,6 @@
 package com.mateus.batista.testeandroidv2app.extensions
 
-import com.mateus.batista.testeandroidv2app.utils.Response
+import com.mateus.batista.testeandroidv2app.data.remote.Response
 import retrofit2.HttpException
 import java.io.IOException
 

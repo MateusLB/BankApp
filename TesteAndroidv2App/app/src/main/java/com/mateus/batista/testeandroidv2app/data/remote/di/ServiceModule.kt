@@ -3,6 +3,7 @@ package com.mateus.batista.testeandroidv2app.data.remote.di
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mateus.batista.testeandroidv2app.BuildConfig.BASE_URL
 import com.mateus.batista.testeandroidv2app.data.remote.BankService
+import com.mateus.batista.testeandroidv2app.data.remote.NetworkStatus
 import com.mateus.batista.testeandroidv2app.data.remote.RequestInterceptor
 import dagger.Module
 import dagger.Provides
@@ -56,5 +57,10 @@ class ServiceModule {
     @Singleton
     fun provideGsonConverterFactory() : GsonConverterFactory =
         GsonConverterFactory.create()
+
+    @Provides
+    @Singleton
+    fun provideNetworkStatus() : NetworkStatus =
+        NetworkStatus()
 
 }

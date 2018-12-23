@@ -62,7 +62,7 @@ class PreferencesManager(context: Context) {
 
 
     fun getString(key: String): String {
-        return mPref!!.getString(key, "")
+        return mPref!!.getString(key, "") ?: ""
     }
 
     fun getBoolean(key: String): Boolean {
