@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity() {
         userInputEditText.beforeTextChanged { userInputLayout.error = null }
         passwordEditText.beforeTextChanged { passwordInputLayout.error = null }
         loginButton.setOnClickListener {
-            loginViewModel.processSignIn(userInputEditText.text.toString(), passwordEditText.text.toString())
+            loginViewModel.processSignIn(LoginBody(userInputEditText.text.toString(), passwordEditText.text.toString()))
         }
     }
 

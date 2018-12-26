@@ -34,17 +34,17 @@ class LoginViewModel @Inject constructor(
         recentLoginData.value = loginInteractor.getRecentLogin()
     }
 
-    fun processSignIn(user: String, password: String) {
-        if (isUserValid(user) && isPasswordValid(password)) {
+    fun processSignIn(loginBody: LoginBody) {
+        if (isUserValid(loginBody.user!!) && isPasswordValid(loginBody.password!!)) {
             signInStatus.value = FlowState(FlowState.Status.LOADING)
 
             job = GlobalScope.launch(provider.iO) {
-                var response = loginInteractor.signIn(LoginBody(user, password))
+                var response = loginInteractor.signIn(loginBody)
 
                 withContext(provider.main) {
                     when (response) {
                         is Response.Success -> {
-                            saveRecentLogin(user, password)
+                            saveRecentLogin(loginBody)
                             saveUserDetail(response.data)
                             signInStatus.value = FlowState(FlowState.Status.SUCCESS)
                         }
@@ -78,10 +78,10 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun isEmailValid(email: String): Boolean =
+    private fun isEmailValid(email: String): Boolean =
         PatternsCompat.EMAIL_ADDRESS.matcher(email).matches()
 
-    fun isCPFValid(cpf: String): Boolean = CPFUtil.myValidateCPF(cpf)
+    private fun isCPFValid(cpf: String): Boolean = CPFUtil.myValidateCPF(cpf)
 
     fun isPasswordValid(password: String): Boolean = when {
         password.isEmpty() -> {
@@ -98,7 +98,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun saveRecentLogin(user: String, password: String) {
-        loginInteractor.setRecentLogin(LoginBody(user, password))
+    private fun saveRecentLogin(loginBody: LoginBody) {
+        loginInteractor.setRecentLogin(loginBody)
     }
 }
