@@ -6,6 +6,6 @@ class FlowState<D>(
     val error: Throwable? = null
 ) {
     enum class Status {
-        LOADING, SUCCESS, ERROR, LOADED
+        LOADING, SUCCESS, ERROR
     }
 }

@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">TesteAndroidv2 App</string>
+    <string name="ok">Ok</string>
+    <string name="error_title">Error</string>
+    <string name="no_internet_connection">Sem conexão de Internet</string>
+    <string name="undefined_error">Ocorreu um erro inesperado</string>
+    <string name="server_error">Ocorreu um erro em nosso servidor, tente novamente mais tarde.</string>
+
+    //login
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="required_field_error">Campo obrigatório</string>
+    <string name="invalid_format_user_error">CPF ou Email inválido</string>
+    <string name="invalid_format_password_error">No mínimo uma letra maiúscula, um carácter especial e um caracter alfanumérico</string>
 </resources>
