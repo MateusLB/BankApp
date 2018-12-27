@@ -9,5 +9,7 @@
     <color name="blue_dark">#313CC3</color>
     <color name="White">#FFFFFF</color>
     <color name="White_dark">#FEFEFE</color>
-    <color name="gray">#B9C3D0</color>
+    <color name="whitte_dark_2">#FF485465</color>
+    <color name="gray">#A8B4C4</color>
+    <color name="black">#FF485465</color>
 </resources>
