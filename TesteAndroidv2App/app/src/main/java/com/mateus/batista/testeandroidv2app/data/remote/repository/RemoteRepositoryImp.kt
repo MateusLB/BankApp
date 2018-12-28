@@ -14,12 +14,12 @@ class RemoteRepositoryImp @Inject constructor(
     private val bankService: BankService
 ) : LoginRemoteRepository, BankPostingsRemoteRepository {
     override suspend fun getStatements(userId: Int): Response<StatementResponse> {
-        return safeApiCall({ true },
+        return safeApiCall({ networkStatus.isOnline() },
             {bankService.getStatements(userId).await()})
     }
 
     override suspend fun signIn(loginBody: LoginBody): Response<LoginResponse> {
-        return safeApiCall({ true },
+        return safeApiCall({ networkStatus.isOnline() },
             { bankService.postLogin(loginBody).await() })
     }
 }
