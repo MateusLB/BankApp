@@ -12,8 +12,6 @@ import com.mateus.batista.testeandroidv2app.base.viewModel.ViewModelFactory
 import com.mateus.batista.testeandroidv2app.extensions.NoInternetException
 import com.mateus.batista.testeandroidv2app.extensions.RemoteDataNotFoundException
 import javax.inject.Inject
-import android.R.string.cancel
-import android.content.DialogInterface
 
 
 open class BaseActivity : AppCompatActivity() {

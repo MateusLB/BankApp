@@ -1,9 +1,9 @@
 package com.mateus.batista.testeandroidv2app.core.login
 
 import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
+import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.data.remote.Response
 
 interface LoginInteractor {
 
@@ -11,4 +11,5 @@ interface LoginInteractor {
     fun getRecentLogin(): LoginBody?
     fun setRecentLogin(loginBody: LoginBody)
     fun saveUserAccount(userAccount: UserAccountEntity)
+    fun setIsLogged()
 }

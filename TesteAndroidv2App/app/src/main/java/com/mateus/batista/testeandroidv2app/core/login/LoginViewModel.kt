@@ -9,7 +9,10 @@ import com.mateus.batista.testeandroidv2app.data.mapper.UserAccountMapper
 import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.utils.*
+import com.mateus.batista.testeandroidv2app.utils.CPFUtil
+import com.mateus.batista.testeandroidv2app.utils.CoroutinesContextProvider
+import com.mateus.batista.testeandroidv2app.utils.FieldStatus
+import com.mateus.batista.testeandroidv2app.utils.FlowState
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -46,6 +49,7 @@ class LoginViewModel @Inject constructor(
                         is Response.Success -> {
                             saveRecentLogin(loginBody)
                             saveUserDetail(response.data)
+                            setIsLogged()
                             signInStatus.value = FlowState(FlowState.Status.SUCCESS)
                         }
                         is Response.Error -> {
@@ -54,12 +58,6 @@ class LoginViewModel @Inject constructor(
                     }
                 }
             }
-        }
-    }
-
-    private fun saveUserDetail(loginResponse: LoginResponse) {
-        loginResponse.userAccount?.let { userAccount ->
-            loginInteractor.saveUserAccount(UserAccountMapper.parse(userAccount))
         }
     }
 
@@ -100,5 +98,17 @@ class LoginViewModel @Inject constructor(
 
     private fun saveRecentLogin(loginBody: LoginBody) {
         loginInteractor.setRecentLogin(loginBody)
+    }
+
+    private fun saveUserDetail(loginResponse: LoginResponse) {
+        loginResponse.userAccount?.let { userAccount ->
+            job = GlobalScope.launch(provider.iO) {
+                loginInteractor.saveUserAccount(UserAccountMapper.parse(userAccount))
+            }
+        }
+    }
+
+    private fun setIsLogged() {
+        loginInteractor.setIsLogged()
     }
 }

@@ -12,6 +12,5 @@ data class UserAccountEntity(
     var name: String,
     @ColumnInfo(name = "bank_account")
     var bankAccount: String,
-    var agency: String,
-    var balance: Double
+    var balance: String
 )

@@ -2,9 +2,9 @@ package com.mateus.batista.testeandroidv2app.login
 
 import com.mateus.batista.testeandroidv2app.core.login.LoginInteractor
 import com.mateus.batista.testeandroidv2app.core.login.LoginInteractorImpl
-import com.mateus.batista.testeandroidv2app.data.local.repository.LocalRepository
+import com.mateus.batista.testeandroidv2app.data.local.repository.LoginLocalRepository
 import com.mateus.batista.testeandroidv2app.data.remote.Response
-import com.mateus.batista.testeandroidv2app.data.remote.repository.RemoteRepository
+import com.mateus.batista.testeandroidv2app.data.remote.repository.LoginRemoteRepository
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.runBlocking
@@ -20,55 +20,64 @@ import org.mockito.MockitoAnnotations
 class LoginInteractorImplTest {
 
     @Mock
-    private lateinit var remoteRepository: RemoteRepository
+    private lateinit var loginRemoteRepository: LoginRemoteRepository
     @Mock
-    private lateinit var localRepository: LocalRepository
+    private lateinit var loginLocalRepository: LoginLocalRepository
     private lateinit var loginInteractor: LoginInteractor
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        loginInteractor = LoginInteractorImpl(localRepository, remoteRepository)
+        loginInteractor = LoginInteractorImpl(loginLocalRepository, loginRemoteRepository)
     }
 
-    @Test fun `signIn WHEN remoteRepository returns a success response MUST return a SUCCESS`(){
+    @Test
+    fun `signIn WHEN remoteRepository returns a success response MUST return a SUCCESS`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         val mockedSuccessLoginResponse = LoginFactory.createSuccessLoginResponse()
         runBlocking {
-            doReturn(mockedSuccessLoginResponse).`when`(remoteRepository).signIn(mockedLoginBody)
+            doReturn(mockedSuccessLoginResponse).`when`(loginRemoteRepository).signIn(mockedLoginBody)
             assert(loginInteractor.signIn(mockedLoginBody) is Response.Success)
-            verify(remoteRepository).signIn(mockedLoginBody)
+            verify(loginRemoteRepository).signIn(mockedLoginBody)
         }
     }
 
-    @Test fun `signIn WHEN remoteRepository returns a error response MUST return a ERROR`(){
+    @Test
+    fun `signIn WHEN remoteRepository returns a error response MUST return a ERROR`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         val mockedErrorLoginResponse = LoginFactory.createErrorLoginResponse()
         runBlocking {
-            doReturn(mockedErrorLoginResponse).`when`(remoteRepository).signIn(mockedLoginBody)
+            doReturn(mockedErrorLoginResponse).`when`(loginRemoteRepository).signIn(mockedLoginBody)
             assert(loginInteractor.signIn(mockedLoginBody) is Response.Error)
-            verify(remoteRepository).signIn(mockedLoginBody)
+            verify(loginRemoteRepository).signIn(mockedLoginBody)
         }
+    }
+
+    @Test
+    fun `setIsLogged MUST save isLogged in sharedPreferences`() {
+        loginInteractor.setIsLogged()
+        verify(loginLocalRepository, times(1)).setIsLogged()
     }
 
     @Test
     fun `setRecentLogin WHEN passed a LoginBody MUST save recentLogin in sharedPreferences`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         loginInteractor.setRecentLogin(mockedLoginBody)
-        verify(localRepository, times(1)).setRecentLogin(mockedLoginBody)
+        verify(loginLocalRepository, times(1)).setRecentLogin(mockedLoginBody)
     }
 
-    @Test fun `getRecentLogin MUST return LoginBody`(){
+    @Test
+    fun `getRecentLogin MUST return LoginBody`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
-        doReturn(mockedLoginBody).`when`(localRepository).getRecentLogin()
+        doReturn(mockedLoginBody).`when`(loginLocalRepository).getRecentLogin()
         loginInteractor.getRecentLogin()
-        assert(localRepository.getRecentLogin() == mockedLoginBody)
+        assert(loginLocalRepository.getRecentLogin() == mockedLoginBody)
     }
 
     @Test
     fun `saveUserAccount WHEN passed a UserAccountEntity MUST save UserAccountEntity in Room`() {
         val mockedUserAccountEntity = LoginFactory.createUserAccountEntity()
         loginInteractor.saveUserAccount(mockedUserAccountEntity)
-        verify(localRepository, times(1)).saveUserAccount(mockedUserAccountEntity)
+        verify(loginLocalRepository, times(1)).saveUserAccount(mockedUserAccountEntity)
     }
 }

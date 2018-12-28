@@ -31,8 +31,7 @@ object LoginFactory {
         userId = 1,
         name = "bankName",
         bankAccount = "bankAccount",
-        agency = "agency",
-        balance = 500.0
+        balance = "R$500"
     )
 
 }

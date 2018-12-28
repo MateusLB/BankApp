@@ -14,7 +14,6 @@ import com.mateus.batista.testeandroidv2app.utils.FieldStatus
 import com.mateus.batista.testeandroidv2app.utils.FlowState
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.partial_progress_bar.*
-import org.jetbrains.anko.startActivity
 
 class LoginActivity : BaseActivity() {
 
@@ -71,7 +70,7 @@ class LoginActivity : BaseActivity() {
             FlowState.Status.SUCCESS -> {
                 progressBar.visibility = View.GONE
                 loginButton.isEnabled = true
-                startActivity<BankPostingsActivity>()
+                callActivityNewTask(BankPostingsActivity::class.java)
             }
             FlowState.Status.ERROR -> {
                 progressBar.visibility = View.GONE

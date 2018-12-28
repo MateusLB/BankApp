@@ -6,6 +6,7 @@ class Constants {
         companion object {
             const val PREF_NAME = "bank_pref"
             const val RECENT_LOGIN = "recent_login"
+            const val IS_LOGGED = "is_logged"
         }
     }
 
@@ -15,13 +16,13 @@ class Constants {
         }
     }
 
-    class Database{
+    class Database {
         companion object {
             const val DATABASE_NAME = "database-bank"
         }
     }
 
-    class Service{
+    class Service {
         companion object {
             const val SERVER_ERROR = 500
         }
