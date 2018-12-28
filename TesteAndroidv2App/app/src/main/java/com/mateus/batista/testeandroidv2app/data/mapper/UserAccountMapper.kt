@@ -2,6 +2,8 @@ package com.mateus.batista.testeandroidv2app.data.mapper
 
 import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
 import com.mateus.batista.testeandroidv2app.data.remote.model.UserAccount
+import com.mateus.batista.testeandroidv2app.utils.ConvertUtil.Companion.getBankAccountForm
+import com.mateus.batista.testeandroidv2app.utils.ConvertUtil.Companion.getRealForm
 
 object UserAccountMapper {
 
@@ -9,9 +11,7 @@ object UserAccountMapper {
         UserAccountEntity(
             userId = userAccount.userId,
             name = userAccount.name ?: "",
-            bankAccount = userAccount.bankAccount ?: "",
-            agency = userAccount.agency ?: "",
-            balance = userAccount.balance
+            bankAccount = getBankAccountForm("${userAccount.agency}${userAccount.bankAccount}"),
+            balance = getRealForm(userAccount.balance)
         )
-
 }

@@ -71,7 +71,7 @@ class LoginActivity : BaseActivity() {
             FlowState.Status.SUCCESS -> {
                 progressBar.visibility = View.GONE
                 loginButton.isEnabled = true
-                startActivity<BankPostingsActivity>()
+                callActivityNewTask(BankPostingsActivity::class.java)
             }
             FlowState.Status.ERROR -> {
                 progressBar.visibility = View.GONE

@@ -46,6 +46,7 @@ class LoginViewModel @Inject constructor(
                         is Response.Success -> {
                             saveRecentLogin(loginBody)
                             saveUserDetail(response.data)
+                            setIsLogged()
                             signInStatus.value = FlowState(FlowState.Status.SUCCESS)
                         }
                         is Response.Error -> {
@@ -54,12 +55,6 @@ class LoginViewModel @Inject constructor(
                     }
                 }
             }
-        }
-    }
-
-    private fun saveUserDetail(loginResponse: LoginResponse) {
-        loginResponse.userAccount?.let { userAccount ->
-            loginInteractor.saveUserAccount(UserAccountMapper.parse(userAccount))
         }
     }
 
@@ -100,5 +95,17 @@ class LoginViewModel @Inject constructor(
 
     private fun saveRecentLogin(loginBody: LoginBody) {
         loginInteractor.setRecentLogin(loginBody)
+    }
+
+    private fun saveUserDetail(loginResponse: LoginResponse) {
+        loginResponse.userAccount?.let { userAccount ->
+            job = GlobalScope.launch(provider.iO) {
+                loginInteractor.saveUserAccount(UserAccountMapper.parse(userAccount))
+            }
+        }
+    }
+
+    private fun setIsLogged() {
+        loginInteractor.setIsLogged()
     }
 }

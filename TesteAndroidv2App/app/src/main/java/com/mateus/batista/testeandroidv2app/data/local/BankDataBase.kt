@@ -7,7 +7,7 @@ import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
 
 @Database(
     entities = [UserAccountEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class BankDataBase : RoomDatabase() {

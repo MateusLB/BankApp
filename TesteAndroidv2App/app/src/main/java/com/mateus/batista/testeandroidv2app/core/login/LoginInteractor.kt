@@ -11,4 +11,5 @@ interface LoginInteractor {
     fun getRecentLogin(): LoginBody?
     fun setRecentLogin(loginBody: LoginBody)
     fun saveUserAccount(userAccount: UserAccountEntity)
+    fun setIsLogged()
 }

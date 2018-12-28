@@ -6,6 +6,7 @@ class Constants {
         companion object {
             const val PREF_NAME = "bank_pref"
             const val RECENT_LOGIN = "recent_login"
+            const val IS_LOGGED = "is_logged"
         }
     }
 
