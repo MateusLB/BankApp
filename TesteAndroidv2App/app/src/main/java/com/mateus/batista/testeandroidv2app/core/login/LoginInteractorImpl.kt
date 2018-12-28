@@ -2,9 +2,9 @@ package com.mateus.batista.testeandroidv2app.core.login
 
 import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
 import com.mateus.batista.testeandroidv2app.data.local.repository.LoginLocalRepository
+import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.repository.LoginRemoteRepository
 import javax.inject.Inject
 

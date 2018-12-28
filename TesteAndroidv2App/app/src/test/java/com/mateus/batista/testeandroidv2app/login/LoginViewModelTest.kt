@@ -163,6 +163,17 @@ class LoginViewModelTest {
     }
 
     @Test
+    fun `processSignIn WHEN API returns success MUST save isLogged in sharedPreferences`() {
+        val mockedLoginBody = createValidLoginBody()
+        val mockedSuccessLoginResponse = createSuccessLoginResponse()
+        runBlocking {
+            doReturn(mockedSuccessLoginResponse).`when`(loginInteractor).signIn(mockedLoginBody)
+            viewModel.processSignIn(mockedLoginBody)
+        }
+        verify(loginInteractor, times(1)).setIsLogged()
+    }
+
+    @Test
     fun `processSignIn WHEN API returns success MUST save saveUserDetail in Room`() {
         val mockedLoginBody = createValidLoginBody()
         val mockedSuccessLoginResponse = createSuccessLoginResponse()

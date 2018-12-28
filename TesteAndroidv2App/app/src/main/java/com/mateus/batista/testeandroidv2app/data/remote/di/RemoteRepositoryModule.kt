@@ -19,6 +19,9 @@ class RemoteRepositoryModule {
 
     @Singleton
     @Provides
-    fun provideBankPostingsRemoteRepository(networkStatus: NetworkStatus, bankService: BankService): BankPostingsRemoteRepository =
+    fun provideBankPostingsRemoteRepository(
+        networkStatus: NetworkStatus,
+        bankService: BankService
+    ): BankPostingsRemoteRepository =
         RemoteRepositoryImp(networkStatus, bankService)
 }

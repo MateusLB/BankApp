@@ -17,14 +17,19 @@ class DomainModule {
 
     @Singleton
     @Provides
-    fun provideLoginInteractor(loginLocalRepository: LoginLocalRepository,
-                               loginRemoteRepository: LoginRemoteRepository) : LoginInteractor =
-            LoginInteractorImpl(loginLocalRepository,loginRemoteRepository)
+    fun provideLoginInteractor(
+        loginLocalRepository: LoginLocalRepository,
+        loginRemoteRepository: LoginRemoteRepository
+    ): LoginInteractor =
+        LoginInteractorImpl(loginLocalRepository, loginRemoteRepository)
 
     @Singleton
     @Provides
-    fun provideBankPostingsInteractor(bankPostingsLocalRepository: BankPostingsLocalRepository,
-                                      bankPostingsRemoteRepository: BankPostingsRemoteRepository)
-            : BankPostingsInteractor = BankPostingsInteractorImp(bankPostingsLocalRepository, bankPostingsRemoteRepository)
+    fun provideBankPostingsInteractor(
+        bankPostingsLocalRepository: BankPostingsLocalRepository,
+        bankPostingsRemoteRepository: BankPostingsRemoteRepository
+    )
+            : BankPostingsInteractor =
+        BankPostingsInteractorImp(bankPostingsLocalRepository, bankPostingsRemoteRepository)
 
 }

@@ -52,7 +52,8 @@ class BankPostingsActivity : BaseActivity(), OnItemClickListener<LocalStatement>
                 balance.text = it.balance
                 bankAccount.text = it.bankAccount
             }
-            else -> {}
+            else -> {
+            }
         }
     }
 
@@ -64,7 +65,7 @@ class BankPostingsActivity : BaseActivity(), OnItemClickListener<LocalStatement>
             }
             FlowState.Status.SUCCESS -> state.data?.let {
                 progressBar.visibility = View.GONE
-                statementListAdapter = StatementListAdapter(it,this)
+                statementListAdapter = StatementListAdapter(it, this)
                 statementsRecycle.adapter = statementListAdapter
                 statementListAdapter.notifyDataSetChanged()
             }

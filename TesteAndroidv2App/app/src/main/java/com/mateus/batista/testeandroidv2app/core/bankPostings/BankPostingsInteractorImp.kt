@@ -17,10 +17,10 @@ class BankPostingsInteractorImp @Inject constructor(
     }
 
     override fun getUserAccount(): UserAccountEntity {
-       return bankPostingsLocalRepository.getUserAccount()
+        return bankPostingsLocalRepository.getUserAccount()
     }
 
     override fun logout() {
-
+        bankPostingsLocalRepository.logout()
     }
 }

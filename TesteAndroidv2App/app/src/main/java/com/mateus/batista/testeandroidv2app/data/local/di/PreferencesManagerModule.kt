@@ -13,5 +13,5 @@ class PreferencesManagerModule {
     @Provides
     @Singleton
     fun providePreferencesManager(@Named("ApplicationContext") context: Context) =
-            PreferencesManager(context)
+        PreferencesManager(context)
 }

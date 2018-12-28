@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            if (preferences.getBoolean(IS_LOGGED,false)) {
+            if (preferences.getBoolean(IS_LOGGED, false)) {
                 callActivityNewTask(BankPostingsActivity::class.java)
             } else {
                 callActivityNewTask(LoginActivity::class.java)

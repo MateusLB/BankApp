@@ -19,22 +19,24 @@ class ServiceModule {
     @Provides
     @Singleton
     fun provideService(retrofit: Retrofit): BankService =
-            retrofit.create(BankService::class.java)
+        retrofit.create(BankService::class.java)
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: GsonConverterFactory) : Retrofit =
-            Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(okHttpClient)
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .addConverterFactory(converterFactory)
-                .build()
+    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: GsonConverterFactory): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(converterFactory)
+            .build()
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor,
-                            requestInterceptor: RequestInterceptor) : OkHttpClient =
+    fun provideOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        requestInterceptor: RequestInterceptor
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(requestInterceptor)
@@ -42,7 +44,7 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideHttpLoggingInterceptor() : HttpLoggingInterceptor {
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return loggingInterceptor
@@ -50,17 +52,17 @@ class ServiceModule {
 
     @Provides
     @Singleton
-    fun provideRequestInterceptor() : RequestInterceptor =
+    fun provideRequestInterceptor(): RequestInterceptor =
         RequestInterceptor()
 
     @Provides
     @Singleton
-    fun provideGsonConverterFactory() : GsonConverterFactory =
+    fun provideGsonConverterFactory(): GsonConverterFactory =
         GsonConverterFactory.create()
 
     @Provides
     @Singleton
-    fun provideNetworkStatus() : NetworkStatus =
+    fun provideNetworkStatus(): NetworkStatus =
         NetworkStatus()
 
 }

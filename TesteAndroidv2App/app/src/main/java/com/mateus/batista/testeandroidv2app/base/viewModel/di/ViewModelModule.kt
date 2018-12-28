@@ -25,5 +25,4 @@ abstract class ViewModelModule {
     abstract fun bindsBankPostingsViewModel(bankPostingsViewModel: BankPostingsViewModel): ViewModel
 
 
-
 }

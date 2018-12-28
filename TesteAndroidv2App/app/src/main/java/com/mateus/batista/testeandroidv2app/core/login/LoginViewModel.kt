@@ -9,7 +9,10 @@ import com.mateus.batista.testeandroidv2app.data.mapper.UserAccountMapper
 import com.mateus.batista.testeandroidv2app.data.remote.Response
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginResponse
-import com.mateus.batista.testeandroidv2app.utils.*
+import com.mateus.batista.testeandroidv2app.utils.CPFUtil
+import com.mateus.batista.testeandroidv2app.utils.CoroutinesContextProvider
+import com.mateus.batista.testeandroidv2app.utils.FieldStatus
+import com.mateus.batista.testeandroidv2app.utils.FlowState
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

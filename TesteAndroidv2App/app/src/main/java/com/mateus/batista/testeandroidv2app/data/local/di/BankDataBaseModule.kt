@@ -15,12 +15,12 @@ class BankDataBaseModule {
 
     @Provides
     @Singleton
-    fun provideUserAccountDao(db: BankDataBase) : UserAccountDao = db.UserAccountDao()
+    fun provideUserAccountDao(db: BankDataBase): UserAccountDao = db.UserAccountDao()
 
     @Provides
     @Singleton
-    fun provideBankDataBase(@Named("ApplicationContext") context: Context) : BankDataBase =
-            Room.databaseBuilder(context,BankDataBase::class.java,DATABASE_NAME)
-                .fallbackToDestructiveMigration()
-                .build()
+    fun provideBankDataBase(@Named("ApplicationContext") context: Context): BankDataBase =
+        Room.databaseBuilder(context, BankDataBase::class.java, DATABASE_NAME)
+            .fallbackToDestructiveMigration()
+            .build()
 }

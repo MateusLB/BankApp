@@ -1,13 +1,9 @@
 package com.mateus.batista.testeandroidv2app.data.mapper
 
-import android.annotation.SuppressLint
 import com.mateus.batista.testeandroidv2app.data.local.entity.LocalStatement
 import com.mateus.batista.testeandroidv2app.data.remote.model.Statement
 import com.mateus.batista.testeandroidv2app.utils.ConvertUtil.Companion.getDataFormat
 import com.mateus.batista.testeandroidv2app.utils.ConvertUtil.Companion.getRealForm
-import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 object StatementMapper {
 
@@ -23,7 +19,6 @@ object StatementMapper {
             date = getDataFormat(statement.date),
             value = getRealForm(statement.value)
         )
-
 
 
 }

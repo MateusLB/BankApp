@@ -31,7 +31,8 @@ class LoginInteractorImplTest {
         loginInteractor = LoginInteractorImpl(loginLocalRepository, loginRemoteRepository)
     }
 
-    @Test fun `signIn WHEN remoteRepository returns a success response MUST return a SUCCESS`(){
+    @Test
+    fun `signIn WHEN remoteRepository returns a success response MUST return a SUCCESS`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         val mockedSuccessLoginResponse = LoginFactory.createSuccessLoginResponse()
         runBlocking {
@@ -41,7 +42,8 @@ class LoginInteractorImplTest {
         }
     }
 
-    @Test fun `signIn WHEN remoteRepository returns a error response MUST return a ERROR`(){
+    @Test
+    fun `signIn WHEN remoteRepository returns a error response MUST return a ERROR`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         val mockedErrorLoginResponse = LoginFactory.createErrorLoginResponse()
         runBlocking {
@@ -52,13 +54,20 @@ class LoginInteractorImplTest {
     }
 
     @Test
+    fun `setIsLogged MUST save isLogged in sharedPreferences`() {
+        loginInteractor.setIsLogged()
+        verify(loginLocalRepository, times(1)).setIsLogged()
+    }
+
+    @Test
     fun `setRecentLogin WHEN passed a LoginBody MUST save recentLogin in sharedPreferences`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         loginInteractor.setRecentLogin(mockedLoginBody)
         verify(loginLocalRepository, times(1)).setRecentLogin(mockedLoginBody)
     }
 
-    @Test fun `getRecentLogin MUST return LoginBody`(){
+    @Test
+    fun `getRecentLogin MUST return LoginBody`() {
         val mockedLoginBody = LoginFactory.createValidLoginBody()
         doReturn(mockedLoginBody).`when`(loginLocalRepository).getRecentLogin()
         loginInteractor.getRecentLogin()

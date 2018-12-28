@@ -13,6 +13,7 @@ class StatementListAdapter(
     val statementList: List<LocalStatement>,
     val listener: OnItemClickListener<LocalStatement>
 ) : RecyclerView.Adapter<StatementListAdapter.StatementListViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatementListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_statement, parent, false)
         return StatementListViewHolder(view)

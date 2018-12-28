@@ -14,7 +14,6 @@ import com.mateus.batista.testeandroidv2app.utils.FieldStatus
 import com.mateus.batista.testeandroidv2app.utils.FlowState
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.partial_progress_bar.*
-import org.jetbrains.anko.startActivity
 
 class LoginActivity : BaseActivity() {
 

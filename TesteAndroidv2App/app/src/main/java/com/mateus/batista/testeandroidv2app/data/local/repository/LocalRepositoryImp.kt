@@ -6,7 +6,6 @@ import com.mateus.batista.testeandroidv2app.data.local.PreferencesManager
 import com.mateus.batista.testeandroidv2app.data.local.dao.UserAccountDao
 import com.mateus.batista.testeandroidv2app.data.local.entity.UserAccountEntity
 import com.mateus.batista.testeandroidv2app.data.remote.model.LoginBody
-import org.jetbrains.anko.doAsync
 import javax.inject.Inject
 
 class LocalRepositoryImp @Inject constructor(
@@ -16,7 +15,7 @@ class LocalRepositoryImp @Inject constructor(
 
     override fun logout() {
         userAccountDao.deleteData()
-        preferences.clear()
+        preferences.remove(IS_LOGGED)
     }
 
     override fun getRecentLogin(): LoginBody? {
@@ -28,11 +27,11 @@ class LocalRepositoryImp @Inject constructor(
     }
 
     override fun saveUserAccount(userAccount: UserAccountEntity) {
-            userAccountDao.insert(userAccount)
+        userAccountDao.insert(userAccount)
     }
 
     override fun getUserAccount(): UserAccountEntity =
-            userAccountDao.getUserAccount()
+        userAccountDao.getUserAccount()
 
     override fun setIsLogged() {
         preferences.setValue(IS_LOGGED, true)
