@@ -1,4 +1,18 @@
-# TesteAndroidv2
+# Bank App
 
-### Instruções para executar o projeto: 
-Abrir a pasta *TesteAndroidv2App* no *AndroidStudio* e executar o projeto. Caso seja utilizado um AVD para teste, por favor, entrar  na classe *RemoteRepositoryImp* e trocar “networkStatus.isOnline()” para *true*.
+### Libraries
+- Coroutines
+- LiveData
+- Room
+- Retrofit, OkHttp
+- Gson
+- Dagger 2
+- JUnit
+- Mockito
+
+#### Good Practices
+- Android architecture MVVM
+- Clean code
+- Dependency injection
+- Reactive programming
+- Unit Test
